@@ -1,9 +1,11 @@
 package com.company;
 
-import Helpz.LevelBuilder;
+import Utilities.LevelBuilder;
+
+import static Utilities.LevelBuilder.getLevelDataFromFile;
 
 public class Camera {
-    public int[][] lvl = LevelBuilder.getLevelData();
+    public int[][] lvl;
     public int xLvlOffset;
     public int lvlTilesWide;
     private int maxTilesOffset;
@@ -14,6 +16,13 @@ public class Camera {
     public boolean right;
 
     public Camera() {
+        if (ConfigWindow.newWorld) {
+            lvl = LevelBuilder.getLevelData();
+        }
+        else {
+            lvl = getLevelDataFromFile(ConfigWindow.worldName);
+        }
+
         initBorderDistance();
     }
 
@@ -44,7 +53,7 @@ public class Camera {
         if (left && x > 0) {
             x -= 48;
         }
-        if (right && x < (lvlTilesWide * 48) - (11 * 48)) {
+        if (right && x < (lvlTilesWide * 48) - (10 * 48)) {
             x += 48;
         }
     }

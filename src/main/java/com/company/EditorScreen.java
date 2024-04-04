@@ -20,6 +20,5 @@ public class EditorScreen extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         editor.render(g);
-        repaint();
     }
 }

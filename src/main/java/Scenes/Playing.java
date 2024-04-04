@@ -1,17 +1,24 @@
 package Scenes;
 
-import Helpz.LevelBuilder;
+import Utilities.LevelBuilder;
 import Managers.TileManager;
+import com.company.ConfigWindow;
 import com.company.Editor;
 
 import java.awt.*;
 
+
 public class Playing {
-    public int[][] lvl;
+    public static int[][] lvl;
     private TileManager tileManager;
 
     public Playing() {
-        lvl = LevelBuilder.getLevelData();
+        if (ConfigWindow.newWorld) {
+            lvl = LevelBuilder.getLevelData();
+        }
+        else {
+            lvl = LevelBuilder.getLevelDataFromFile(ConfigWindow.worldName);
+        }
         tileManager = new TileManager();
     }
 
